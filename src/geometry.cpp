@@ -47,10 +47,14 @@ double perimeterPolygon(vector<Point> points)
 {
     int n = points.size();
     double perimeter = 0;
-    for (int i=0; i<n; i++){
-        perimeter += dist(points[i], points[(i+1)%n]);
+    if(!checkHull(points)){
+        perimeter=-1;
     }
-
+    else{
+        for (int i=0; i<n; i++){
+            perimeter += dist(points[i], points[(i+1)%n]);
+        }
+    }
     return perimeter;
 }
 

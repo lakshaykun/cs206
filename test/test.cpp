@@ -11,7 +11,7 @@ void test_distsq(){
 	assert(dist({1,1},{1,1}) == (double)sqrt(0));
 	assert(dist({-5,5},{5,-5}) == (double)sqrt(200));
 	assert(dist({0,0},{1,0}) == (double)sqrt(1));
-	std::cout<<"all test cases passed"<<std::endl;
+	cout<<"all test cases passed"<<endl;
 }
 void test_orientation(){
 	assert(orientation({0,0},{1,1},{3,2})==1);
@@ -19,7 +19,7 @@ void test_orientation(){
 	assert(orientation({0,0},{0,0},{1,1})==0);
 	assert(orientation({1,-1},{1,1},{-1,1})==2);
 	assert(orientation({-1,-1},{1,1},{3,3})==0);
-    std::cout<<"all test cases passed"<<std::endl;
+    cout<<"all test cases passed"<<endl;
 }
 void test_crossproduct(){
 	assert(crossProduct({1,1},{1,1},{1,1})==0);
@@ -28,7 +28,7 @@ void test_crossproduct(){
 	assert(crossProduct({7,5},{5,15},{5,4})==22);
 	assert(crossProduct({1,2},{3,4},{5,6})==0);
 	assert(crossProduct({15,7},{8,7},{10,9})==-14);
-    std::cout<<"all test cases passed"<<std::endl;
+    cout<<"all test cases passed"<<endl;
 }
 void test_duplicate(){
     
@@ -83,59 +83,64 @@ void test_hull() {
     vector<Point> points6 = {{0, 0}, {1, 1}, {2, 2}, {3, 3}, {4, 4}};
     assert(checkHull(points6) == false);
 
-    std::cout << "All tests passed!" << std::endl;
+    cout << "All tests cases passed!" << endl;
 }	
 
 
 
 void test_perimeter(){
-    vector<Point> emptyPolygon;
-    assert(fabs(perimeterPolygon(emptyPolygon) - 0.0) < epsilon);
+        assert((perimeterPolygon(vector<Point>{})==-1));
+    assert(perimeterPolygon(vector<Point>{{0, 0}})==-1);
+    assert(perimeterPolygon(vector<Point>{{0, 0}, {1, 1}})==-1);
+    assert(fabs(perimeterPolygon(vector<Point>{{0, 0}, {1, 0}, {0, 1}}) -
+                (dist({0, 0}, {1, 0}) + dist({1, 0}, {0, 1}) + dist({0, 1}, {0, 0}))) < epsilon);
+    assert(fabs(perimeterPolygon(vector<Point>{{0, 0}, {2, 0}, {2, 1}, {0, 1}}) -
+                (dist({0, 0}, {2, 0}) + dist({2, 0}, {2, 1}) + dist({2, 1}, {0, 1}) + dist({0, 1}, {0, 0}))) < epsilon);
+    assert(fabs(perimeterPolygon(vector<Point>{{0, 0}, {1, 0}, {1, 1}, {0, 1}}) - 4.0) < epsilon);
+    assert(perimeterPolygon(vector<Point>{{0, 0}, {1, 1}, {2, 2}}) ==-1);
+    assert(fabs(perimeterPolygon(vector<Point>{{1000000, 0}, {0, 1000000}, {-1000000, 0}, {0, -1000000}}) -
+                (dist({1000000, 0}, {0, 1000000}) +
+                 dist({0, 1000000}, {-1000000, 0}) +
+                 dist({-1000000, 0}, {0, -1000000}) +
+                 dist({0, -1000000}, {1000000, 0}))) < epsilon);
+    assert(fabs(perimeterPolygon(vector<Point>{{0, 0}, {2, 0}, {2, 2}, {0, 2}, {0, 0}}) -
+                (dist({0, 0}, {2, 0}) + dist({2, 0}, {2, 2}) + dist({2, 2}, {0, 2}) + dist({0, 2}, {0, 0}))) < epsilon);
 
-    vector<Point> singlePoint = { {0, 0} };
-    assert(fabs(perimeterPolygon(singlePoint) - 0.0) < epsilon);
-
-    vector<Point> twoPoints = { {0, 0}, {1, 1} };
-    double expectedPerimeterTwoPoints = 2 * dist({0, 0}, {1, 1});
-    assert(fabs(perimeterPolygon(twoPoints) - expectedPerimeterTwoPoints) < epsilon);
-
-    vector<Point> triangle = { {0, 0}, {1, 0}, {0, 1} };
-    double expectedPerimeterTriangle = dist({0, 0}, {1, 0}) +
-                                       dist({1, 0}, {0, 1}) +
-                                       dist({0, 1}, {0, 0});
-    assert(fabs(perimeterPolygon(triangle) - expectedPerimeterTriangle) < epsilon);
-
-    vector<Point> collinearPoints = { {0, 0}, {1, 1}, {2, 2} };
-    double expectedPerimeterCollinear = 2 * dist({0, 0}, {2, 2});
-    assert(fabs(perimeterPolygon(collinearPoints) - expectedPerimeterCollinear) < epsilon);
-
-    vector<Point> largeCoords = { {1000000, 0}, {0, 1000000},
-                                  {-1000000, 0}, {0, -1000000} };
-    double expectedPerimeterLargeCoords = dist({1000000, 0}, {0, 1000000}) +
-                                          dist({0, 1000000}, {-1000000, 0}) +
-                                          dist({-1000000, 0}, {0, -1000000}) +
-                                          dist({0, -1000000}, {1000000, 0});
-    assert(fabs(perimeterPolygon(largeCoords) - expectedPerimeterLargeCoords) < epsilon);
-
-    vector<Point> square = { {0, 0}, {1, 0}, {1, 1}, {0, 1} };
-    assert(fabs(perimeterPolygon(square) - 4.0) < epsilon);
-
-    vector<Point> repeatedPoints = { {0, 0}, {1, 0}, {1, 0}, {0, 0} };
-    assert(fabs(perimeterPolygon(repeatedPoints) - 2.0) < epsilon);
+    cout << "All Test Cases Passed!" << endl;
 }
 
 	
-	
+void test_area(){
+    assert(fabs(areaPolygon({}) - 0.0) < epsilon);
+
+    assert(fabs(areaPolygon({{0, 0}}) - 0.0) < epsilon);
+
+    assert(fabs(areaPolygon({{0, 0}, {1, 1}}) - 0.0) < epsilon);
+
+    assert(fabs(areaPolygon({{0, 0}, {4, 0}, {0, 3}}) - 6.0) < epsilon);
+
+    assert(fabs(areaPolygon({{0, 0}, {1, 0}, {1, 1}, {0, 1}}) - 1.0) < epsilon);
+
+    assert(fabs(areaPolygon({{0, 0}, {2, 0}, {2, 3}, {0, 3}}) - 6.0) < epsilon);
+    assert(fabs(areaPolygon({{0, 0}, {1, 1}, {2, 2}}) - 0.0) < epsilon);
+
+    assert(fabs(areaPolygon({{1000000, 0}, {0, 1000000}, {-1000000, 0}, {0, -1000000}}) - (2 * 1e12)) < epsilon);
+
+    assert(fabs(areaPolygon({{0, 0}, {1, 0}, {1, 0}, {0, 0}}) - 0.0) < epsilon);
+
+    cout<<"All Test Cases Passed"<<endl;
+}	
 	
 
 int main(){
-	cout<<(double)dist({0,0},{1,1})-sqrt(2)<<endl;
-	cout<<sqrt(2)<<endl;
+
 	test_distsq();
 	test_orientation();
 	test_crossproduct();
 	test_duplicate();
     test_perimeter();
+    test_hull();
+    test_area();
 	return 0;
 }
 
