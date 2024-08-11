@@ -16,10 +16,10 @@ int orientation(Point p, Point q, Point r);
 double crossProduct(Point p, Point q, Point r);
 
 // function to calulate area of a polygon
-double areaPolygon(vector<Point> points, int n);
+double areaPolygon(vector<Point> points);
 
 // function to calculate perimeter of a polygon
-double perimeterPolygon(vector<Point> points, int n);
+double perimeterPolygon(vector<Point> points);
 
 // function to remove duplicate points from the set of points
 void removeDuplicates(vector<Point> &points);
