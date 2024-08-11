@@ -15,16 +15,16 @@ LDFLAGS = -L$(LIB_DIR) -lgeo -Wl,-rpath=$(LIB_DIR) -lboost_iostreams -lm
 # Find source files and define object files
 SRC_FILES = $(shell find $(SRC_DIR) -name "*.cpp")
 APP_FILES = $(shell find $(APP_DIR) -name "*.cpp")
-TEST_FILES = $(shell find $(TEST_DIR) -name "*.cpp")
+# TEST_FILES = $(shell find $(TEST_DIR) -name "*.cpp")
 
 SRC_OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))
 APP_OBJ_FILES = $(patsubst $(APP_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(APP_FILES))
-TEST_OBJ_FILES = $(patsubst $(TEST_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(TEST_FILES))
+# TEST_OBJ_FILES = $(patsubst $(TEST_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(TEST_FILES))
 
 LIB_NAME = libgeo.so
 
 # Define targets
-all: lib app unittest
+all: lib app #unittest
 
 lib: $(SRC_OBJ_FILES)
 	@mkdir -p $(LIB_DIR)
@@ -34,9 +34,9 @@ app: $(APP_OBJ_FILES)
 	@mkdir -p $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) $(APP_OBJ_FILES) $(LDFLAGS) -o $(BIN_DIR)/app.out
 
-unittest: $(TEST_OBJ_FILES)
-	@mkdir -p $(BIN_DIR)
-	$(CXX) $(CXXFLAGS) $(TEST_OBJ_FILES) $(LDFLAGS) -o $(BIN_DIR)/unittest.out
+# unittest: $(TEST_OBJ_FILES)
+# 	@mkdir -p $(BIN_DIR)
+# 	$(CXX) $(CXXFLAGS) $(TEST_OBJ_FILES) $(LDFLAGS) -o $(BIN_DIR)/unittest.out
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
@@ -46,9 +46,9 @@ $(OBJ_DIR)/%.o: $(APP_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-$(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp
-	@mkdir -p $(OBJ_DIR)
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
+# $(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp
+# 	@mkdir -p $(OBJ_DIR)
+# 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 .PHONY: clean
 

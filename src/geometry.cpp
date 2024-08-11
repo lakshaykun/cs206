@@ -66,3 +66,20 @@ void removeDuplicates(vector<Point> &points)
         }
     }
 }
+
+
+// function to check if the convex hull returned by the function is collinear or not
+// returns true if the convex hull is not collinear
+bool checkHull(vector<Point> points)
+{
+    int n = points.size();
+    if (n < 3) return false;
+
+    for (int i=0; i<n; i++){
+        if (orientation(points[i], points[(i+1)%n], points[(i+2)%n]) != 0){
+            return true;
+        }
+    }
+
+    return false;
+}

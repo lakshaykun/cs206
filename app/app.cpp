@@ -16,8 +16,7 @@ int main()
     cin >> n;
 
     if (n < 3){
-        cout << "Convex Hull not with less than 3 points!!!" << endl;
-        main();
+        cout << "Convex Hull not possible with less than 3 points!!!" << endl;
         return 0;
     }
 
@@ -32,7 +31,7 @@ int main()
     removeDuplicates(points);
 
     vector<Point> result = convexHull(points, points.size());
-    if (result.size() < 3){
+    if (checkHull(result) == false){
         cout << "Convex Hull not possible!!!" << endl;
         return 0;
     }
@@ -64,7 +63,7 @@ int main()
 
     // Plot using gnuplot
     Gnuplot gp;
-    gp << "set title 'Convex Hull ; area = " << area << " unit sq ;" << "perimeter = " << perimeter << " unit\n";
+    gp << "set title 'Convex Hull\n";
     gp << "plot '-' with points pt 7 title 'Points', '-' with lines lw 2 title 'Convex Hull'\n";
 
     gp.send1d(original_points);
