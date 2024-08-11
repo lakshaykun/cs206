@@ -37,9 +37,9 @@ int main()
         return 0;
     }
 
-    double area = areaPolygon(result, result.size());
+    double area = areaPolygon(result);
 
-    double perimeter = perimeterPolygon(result, result.size());
+    double perimeter = perimeterPolygon(result);
 
     cout << "Convex Hull: ";
     for (int i=0; i<result.size(); i++){
