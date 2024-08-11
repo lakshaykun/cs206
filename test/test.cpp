@@ -31,9 +31,41 @@ void test_crossproduct(){
     std::cout<<"all test cases passed"<<std::endl;
 }
 void test_duplicate(){
+    
+    vector<Point> points1 = {{1.0, 1.0}, {2.0, 2.0}, {3.0, 3.0}};
+    vector<Point> expected1 = {{1.0, 1.0}, {2.0, 2.0}, {3.0, 3.0}};
+    removeDuplicates(points1);
+    assert(points1 == expected1);
+
+   
+    vector<Point> points2 = {{1.0, 1.0}, {1.0, 1.0}, {1.0, 1.0}};
+    vector<Point> expected2 = {{1.0, 1.0}};
+    removeDuplicates(points2);
+    assert(points2 == expected2);
+
+    
+    vector<Point> points3 = {{1.0, 1.0}, {2.0, 2.0}, {1.0, 1.0}, {3.0, 3.0}, {2.0, 2.0}};
+    vector<Point> expected3 = {{1.0, 1.0}, {2.0, 2.0}, {3.0, 3.0}};
+    removeDuplicates(points3);
+    assert(points3 == expected3);
+
+    
+    vector<Point> points4 = {{1.0, 1.0}};
+    vector<Point> expected4 = {{1.0, 1.0}};
+    removeDuplicates(points4);
+    assert(points4 == expected4);
+
+
+    vector<Point> points5 = {};
+    vector<Point> expected5 = {};
+    removeDuplicates(points5);
+    assert(points5 == expected5);
+
+    cout << "All test cases passed!" << endl;
+}
 	
 
-}
+
 
 void test_perimeter(){
 }
