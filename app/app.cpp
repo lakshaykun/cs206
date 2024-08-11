@@ -17,7 +17,6 @@ int main()
 
     if (n < 3){
         cout << "Convex Hull not possible with less than 3 points!!!" << endl;
-        main();
         return 0;
     }
 
@@ -34,7 +33,6 @@ int main()
     vector<Point> result = convexHull(points, points.size());
     if (checkHull(result) == false){
         cout << "Convex Hull not possible!!!" << endl;
-        main();
         return 0;
     }
 
