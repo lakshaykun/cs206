@@ -30,9 +30,10 @@ void test_crossproduct(){
 }
 void test_duplicate(){
 	assert(removeDuplicates(&{{1,1},{1,1}})=={1,1});
+}
 
 void test_perimeter(){
-	assert(perimeter(
+}
 	
 	
 	
