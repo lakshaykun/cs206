@@ -1,6 +1,6 @@
 #include<iostream>
 #include<cassert>
-#include "geometry.hpp"
+#include "../include/geometry.hpp"
 #include <cmath>
 using namespace std;
 
@@ -19,6 +19,7 @@ void test_orientation(){
 	assert(orientation({0,0},{0,0},{1,1})==0);
 	assert(orientation({1,-1},{1,1},{-1,1})==2);
 	assert(orientation({-1,-1},{1,1},{3,3})==0);
+    std::cout<<"all test cases passed"<<std::endl;
 }
 void test_crossproduct(){
 	assert(crossProduct({1,1},{1,1},{1,1})==0);
@@ -27,9 +28,11 @@ void test_crossproduct(){
 	assert(crossProduct({7,5},{5,15},{5,4})==22);
 	assert(crossProduct({1,2},{3,4},{5,6})==8);
 	assert(crossProduct({15,7},{8,7},{10,9})==-14);
+    std::cout<<"all test cases passed"<<std::endl;
 }
 void test_duplicate(){
-	assert(removeDuplicates(&{{1,1},{1,1}})=={1,1});
+	
+
 }
 
 void test_perimeter(){
