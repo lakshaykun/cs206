@@ -23,3 +23,6 @@ double perimeterPolygon(vector<Point> points);
 
 // function to remove duplicate points from the set of points
 void removeDuplicates(vector<Point> &points);
+
+// function to check if the convex hull is collinear
+bool checkHull(vector<Point> points);
