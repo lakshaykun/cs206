@@ -82,7 +82,24 @@
         make clean: Cleans up all compiled files.
         make run: Executes the main application.
         make run_test: Executes the test cases.
-    
+
+
+    *Dependencies
+
+        Ensure all required libraries are installed on your system:
+
+            Gnuplot
+            Boost Iostreams
+
+        Gnuplot:
+
+           $ sudo apt update
+           $ sudo apt install gnuplot
+
+        Boost Iostreams:
+
+            $ sudo apt update
+            $ sudo apt install libboost-iostreams-dev
     
 **Team Information**
 
