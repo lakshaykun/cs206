@@ -86,3 +86,17 @@
         make run_test: Executes the test cases.
     
     
+**Team Information**
+
+    * Group Number: 13
+
+    * Team Members:
+
+        1. Lakshay LK (2023AIB1010)
+            * Tasks: 0, 3, and 5
+
+        2. Shivam Kumar Goyal (2023AIB1016)
+            * Tasks: 0, 2, and 4
+
+        3. Diya Bhatnagar (2023AIB1003)
+            * Tasks: 0 and 1
