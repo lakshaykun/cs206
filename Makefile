@@ -24,7 +24,7 @@ TEST_OBJ_FILES = $(patsubst $(TEST_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(TEST_FILES))
 LIB_NAME = libgeo.so
 
 # Define targets
-all: lib app unittest
+all: lib app test
 
 lib: $(SRC_OBJ_FILES)
 	@mkdir -p $(LIB_DIR)
@@ -34,9 +34,9 @@ app: $(APP_OBJ_FILES)
 	@mkdir -p $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) $(APP_OBJ_FILES) $(LDFLAGS) -o $(BIN_DIR)/app.out
 
-unittest: $(TEST_OBJ_FILES)
+test: $(TEST_OBJ_FILES)
 	@mkdir -p $(BIN_DIR)
-	$(CXX) $(CXXFLAGS) $(TEST_OBJ_FILES) $(LDFLAGS) -o $(BIN_DIR)/unittest.out
+	$(CXX) $(CXXFLAGS) $(TEST_OBJ_FILES) $(LDFLAGS) -o $(BIN_DIR)/test.out
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
@@ -50,14 +50,11 @@ $(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-.PHONY: clean
-
-set:
-	echo "Setting LD_LIBRARY_PATH"
-	export LD_LIBRARY_PATH=/home/shinigami/coding/assignments/cs206/lib:$LD_LIBRARY_PATH
-
 run:
 	./$(BIN_DIR)/app.out
+
+run_test:
+	./$(BIN_DIR)/test.out
 
 clean:
 	rm -rf $(OBJ_DIR)/*.o $(LIB_DIR)/*.so $(BIN_DIR)/*.out
