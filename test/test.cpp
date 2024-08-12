@@ -5,21 +5,23 @@
 using namespace std;
 const double  epsilon=1e-9;
 
+
 void test_distsq(){
-	assert(dist({0,0},{1,1}) == (double)sqrt(2));
+	assert(dist({0,0},{-1,-1}) == (double)sqrt(2));
 	assert(dist({1,-1},{1,1}) == (double)sqrt(4));
 	assert(dist({1,1},{1,1}) == (double)sqrt(0));
 	assert(dist({-5,5},{5,-5}) == (double)sqrt(200));
 	assert(dist({0,0},{1,0}) == (double)sqrt(1));
-	cout<<"all test cases passed"<<endl;
+	cout<<"all test cases for function 'dist' passed"<<endl;
 }
 void test_orientation(){
 	assert(orientation({0,0},{1,1},{3,2})==1);
 	assert(orientation({0,0},{1,1},{1,-1})==1);
 	assert(orientation({0,0},{0,0},{1,1})==0);
+	assert(orientation({1,1},{2,2},{0,0})==0);
 	assert(orientation({1,-1},{1,1},{-1,1})==2);
 	assert(orientation({-1,-1},{1,1},{3,3})==0);
-    cout<<"all test cases passed"<<endl;
+    cout<<"all test cases for function 'orientation' passed"<<endl;
 }
 void test_crossproduct(){
 	assert(crossProduct({1,1},{1,1},{1,1})==0);
@@ -28,7 +30,7 @@ void test_crossproduct(){
 	assert(crossProduct({7,5},{5,15},{5,4})==22);
 	assert(crossProduct({1,2},{3,4},{5,6})==0);
 	assert(crossProduct({15,7},{8,7},{10,9})==-14);
-    cout<<"all test cases passed"<<endl;
+    cout<<"all test cases for function 'crossProduct' passed"<<endl;
 }
 void test_duplicate(){
     
@@ -61,7 +63,7 @@ void test_duplicate(){
     removeDuplicates(points5);
     assert(points5 == expected5);
 
-    cout << "All test cases passed!" << endl;
+    cout << "All test cases for function 'removeDuplicates' passed!" << endl;
 }
 void test_hull() {
     vector<Point> points1 = {{0, 0}, {1, 1}};
@@ -82,8 +84,11 @@ void test_hull() {
 
     vector<Point> points6 = {{0, 0}, {1, 1}, {2, 2}, {3, 3}, {4, 4}};
     assert(checkHull(points6) == false);
+    vector<Point> points7 = {{0, 0}, {1, 1}, {0,0}, {3, 3}, {-1,-1}};
+    assert(checkHull(points7) == false);
 
-    cout << "All tests cases passed!" << endl;
+
+    cout << "All tests cases for function 'cheakHUll' passed!" << endl;
 }	
 
 
@@ -106,7 +111,7 @@ void test_perimeter(){
     assert(fabs(perimeterPolygon(vector<Point>{{0, 0}, {2, 0}, {2, 2}, {0, 2}, {0, 0}}) -
                 (dist({0, 0}, {2, 0}) + dist({2, 0}, {2, 2}) + dist({2, 2}, {0, 2}) + dist({0, 2}, {0, 0}))) < epsilon);
 
-    cout << "All Test Cases Passed!" << endl;
+    cout << "All Test Cases for function 'perimeterPolygon' Passed!" << endl;
 }
 
 	
@@ -127,8 +132,9 @@ void test_area(){
     assert(fabs(areaPolygon({{1000000, 0}, {0, 1000000}, {-1000000, 0}, {0, -1000000}}) - (2 * 1e12)) < epsilon);
 
     assert(fabs(areaPolygon({{0, 0}, {1, 0}, {1, 0}, {0, 0}}) - 0.0) < epsilon);
+    assert(fabs(areaPolygon({{1,1}, {1, -1}, {-1, -1}, {-1, 1}}) - 4) < epsilon);
 
-    cout<<"All Test Cases Passed"<<endl;
+    cout<<"All Test Cases for function 'areaPolygon' Passed"<<endl;
 }	
 	
 
@@ -141,6 +147,7 @@ int main(){
     test_perimeter();
     test_hull();
     test_area();
+    cout<<"ALL TEST CASES PASSED !"<<endl;
 	return 0;
 }
 
