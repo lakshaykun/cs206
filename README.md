@@ -1,5 +1,3 @@
-//Overview of lab assignment, information about files, compilation and running steps, or any other information
-
 **CONVEX HULL-**
     The convex hull of a set of points is a key concept in computational geometry. It refers to the smallest convex polygon that can completely enclose a given set of points in a plane.
     In this assignment we have used Jarvis's March Algorithm implemented in C++ Language:
