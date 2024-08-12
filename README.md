@@ -84,22 +84,19 @@
         make run_test: Executes the test cases.
 
 
-    *Dependencies
+    * Dependencies
 
         Ensure all required libraries are installed on your system:
 
-            Gnuplot
-            Boost Iostreams
+            1. Gnuplot
+            
+                $ sudo apt update
+                $ sudo apt install gnuplot
 
-        Gnuplot:
+            2. Boost Iostreams
 
-           $ sudo apt update
-           $ sudo apt install gnuplot
-
-        Boost Iostreams:
-
-            $ sudo apt update
-            $ sudo apt install libboost-iostreams-dev
+                $ sudo apt update
+                $ sudo apt install libboost-iostreams-dev
     
 **Team Information**
 
